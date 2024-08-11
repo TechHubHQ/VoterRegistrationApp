@@ -54,6 +54,22 @@ async def polling_locations(request: Request) -> HTMLResponse:
 async def absentee_voting(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("AbsenteeVoting.html", {"request": request})
 
+@router.get("/register_to_vote", response_class=HTMLResponse)
+async def register_to_vote(request: Request):
+    return templates.TemplateResponse("register_to_vote.html", {"request": request})
+
+@router.get("/vote_reg_status", response_class=HTMLResponse)
+async def vote_reg_status(request: Request):
+    return templates.TemplateResponse("VoteRegStatus.html", {"request": request})
+
+@router.get("/elections_directory", response_class=HTMLResponse)
+async def elections_directory(request: Request):
+    return templates.TemplateResponse("Election_Directory.html", {"request": request})
+
+@router.get("/become_poll_worker", response_class=HTMLResponse)
+async def become_poll_worker(request: Request):
+    return templates.TemplateResponse("Poll_Worker.html", {"request": request})
+
 
 # API routing
 @router.post("/api/login", response_class=JSONResponse)

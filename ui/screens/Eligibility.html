@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Voter Eligibility - Voter Registration</title>
+    <title>Valid Forms of ID - Voter Registration</title>
     <link rel="icon" href="{{ url_for('ui', path='/assets/favicon.ico') }}" />
     <link
       rel="stylesheet"
@@ -13,7 +13,7 @@
   <body class="min-h-screen bg-gray-100">
     <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold text-gray-900">Voter Eligibility</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Valid Forms of ID</h1>
       </div>
     </header>
     <main>
@@ -21,30 +21,30 @@
         <div class="px-4 py-6 sm:px-0">
           <div class="bg-white shadow overflow-hidden sm:rounded-lg">
             <div class="px-4 py-5 sm:px-6">
-              <h2 class="text-lg leading-6 font-medium text-gray-900">Eligibility Requirements</h2>
-              <p class="mt-1 max-w-2xl text-sm text-gray-500">Check if you meet the criteria to vote in your state.</p>
+              <h2 class="text-lg leading-6 font-medium text-gray-900">Acceptable Identification</h2>
+              <p class="mt-1 max-w-2xl text-sm text-gray-500">The following forms of ID are generally accepted for voter registration. Requirements may vary by state.</p>
             </div>
             <div class="border-t border-gray-200">
               <dl>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-gray-500">Citizenship</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Must be a U.S. citizen</dd>
+                  <dt class="text-sm font-medium text-gray-500">Driver's License</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">A valid, unexpired driver's license from your state</dd>
                 </div>
                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-gray-500">Age</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Must be at least 18 years old on or before Election Day</dd>
+                  <dt class="text-sm font-medium text-gray-500">State ID Card</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">A valid, unexpired state-issued ID card</dd>
                 </div>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-gray-500">Residency</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Must meet your state's residency requirements</dd>
+                  <dt class="text-sm font-medium text-gray-500">U.S. Passport</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">A valid, unexpired U.S. passport or passport card</dd>
                 </div>
                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-gray-500">Criminal Record</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Not be currently serving a felony sentence (rules vary by state)</dd>
+                  <dt class="text-sm font-medium text-gray-500">Military ID</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">A valid U.S. military ID card</dd>
                 </div>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-gray-500">Mental Competency</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Not be declared mentally incompetent by a court of law</dd>
+                  <dt class="text-sm font-medium text-gray-500">Tribal ID Card</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">A tribal identification card issued by a federally recognized tribe</dd>
                 </div>
               </dl>
             </div>
@@ -55,7 +55,13 @@
               <h3 class="text-lg leading-6 font-medium text-gray-900">Additional Information</h3>
             </div>
             <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
-              <p class="text-sm text-gray-500">Some states allow 17-year-olds to register if they will be 18 by the next general election. Check with your local election office for specific rules in your area.</p>
+              <p class="text-sm text-gray-500">Some states may accept additional forms of ID or have specific requirements. Check with your local election office for the most up-to-date information on acceptable forms of ID in your area.</p>
+              <div class="mt-4">
+                <a href="https://www.nass.org/can-i-vote/valid-forms-id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  Check State-Specific ID Requirements
+                  <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -64,8 +70,8 @@
               <i class="fas fa-arrow-left mr-2"></i>
               Back to Dashboard
             </a>
-            <a href="{{ url_for('deadlines') }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Next: Registration Deadlines
+            <a href="{{ url_for('elections_directory') }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Next: Elections Directory
               <i class="fas fa-arrow-right ml-2"></i>
             </a>
           </div>
