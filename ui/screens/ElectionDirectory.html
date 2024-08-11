@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Become a Poll Worker</title>
+    <title>Election Directory</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="icon" href="{{ url_for('ui', path='/assets/favicon.ico') }}" />
   </head>
   <body class="min-h-screen bg-gray-100">
     <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold text-gray-900">Become a Poll Worker</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Election Directory</h1>
       </div>
     </header>
     <main>
@@ -17,26 +18,22 @@
         <div class="px-4 py-6 sm:px-0">
           <div class="bg-white shadow overflow-hidden sm:rounded-lg">
             <div class="px-4 py-5 sm:px-6">
-              <h2 class="text-lg leading-6 font-medium text-gray-900">Steps to Become a Poll Worker</h2>
-              <p class="mt-1 max-w-2xl text-sm text-gray-500">Follow these steps to get involved and help your community on Election Day:</p>
+              <h2 class="text-lg leading-6 font-medium text-gray-900">Find Your Election Office</h2>
+              <p class="mt-1 max-w-2xl text-sm text-gray-500">Use this directory to find your local election office and get official information about voting procedures in your area:</p>
             </div>
             <div class="border-t border-gray-200">
               <dl>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt class="text-sm font-medium text-gray-500">Step 1</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Check eligibility requirements in your state</dd>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Select your state from the list</dd>
                 </div>
                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt class="text-sm font-medium text-gray-500">Step 2</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Complete the poll worker application form</dd>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Find the contact information for your local election office</dd>
                 </div>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt class="text-sm font-medium text-gray-500">Step 3</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Attend mandatory training sessions</dd>
-                </div>
-                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt class="text-sm font-medium text-gray-500">Step 4</dt>
-                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Prepare for your duties on Election Day</dd>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Reach out to your election office for any specific inquiries</dd>
                 </div>
               </dl>
             </div>
@@ -44,12 +41,12 @@
           
           <div class="mt-8 bg-white shadow overflow-hidden sm:rounded-lg">
             <div class="px-4 py-5 sm:px-6">
-              <h3 class="text-lg leading-6 font-medium text-gray-900">Official Poll Worker Information</h3>
+              <h3 class="text-lg leading-6 font-medium text-gray-900">Official Election Directory</h3>
             </div>
             <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
-              <p class="text-sm text-gray-500">To learn more about becoming a poll worker and to start your application, please visit the official website:</p>
-              <a href="https://www.nass.org/can-i-vote/become-a-poll-worker" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Become a Poll Worker
+              <p class="text-sm text-gray-500">For the official directory of election offices and to find specific information, please visit the US Vote Foundation's election office directory:</p>
+              <a href="https://www.usvotefoundation.org/election-offices" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Visit Election Directory
                 <i class="fas fa-external-link-alt ml-2"></i>
               </a>
             </div>
@@ -60,8 +57,8 @@
               <i class="fas fa-arrow-left mr-2"></i>
               Back to Dashboard
             </a>
-            <a href="/absentee_voting" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Check Absentee Voting
+            <a href="/vote_reg_status" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Next: Check Voter Status
               <i class="fas fa-arrow-right ml-2"></i>
             </a>
           </div>
