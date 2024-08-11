@@ -97,5 +97,3 @@ async def signup_post(data: SignupModel = Body(...)) -> JSONResponse:
         raise HTTPException(status_code=400, detail="Username, password, state and city are required")
     am.manage_signup(username, password, state, city)
     return JSONResponse(status_code=200, content={"message": "Signup successful"})
-
-
