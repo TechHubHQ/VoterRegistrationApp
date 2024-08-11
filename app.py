@@ -20,6 +20,4 @@ db.initialize_database()
 
 
 if __name__ == "__main__":
-    prod = uvicorn.run(app, host="127.0.0.1", port=8000)
-    dev = uvicorn.run(app, host="127.0.0.1", port=8000, reload="--reload")
-    
+    uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)
