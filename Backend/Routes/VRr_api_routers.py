@@ -38,9 +38,21 @@ async def dashboard(request: Request) -> HTMLResponse:
 async def voter_registration(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("VoterRegistration.html", {"request": request})
 
-@router.get("eligibility", response_class=HTMLResponse)
+@router.get("/eligibility", response_class=HTMLResponse)
 async def eligibility(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("Eligibility.html", {"request": request})
+
+@router.get("/deadlines", response_class=HTMLResponse)
+async def deadlines(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("Deadlines.html", {"request": request})
+
+@router.get("/polling_locations", response_class=HTMLResponse)
+async def polling_locations(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("PollingLocations.html", {"request": request})
+
+@router.get("/absentee_voting", response_class=HTMLResponse)
+async def absentee_voting(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("AbsenteeVoting.html", {"request": request})
 
 
 # API routing
@@ -69,3 +81,5 @@ async def signup_post(data: SignupModel = Body(...)) -> JSONResponse:
         raise HTTPException(status_code=400, detail="Username, password, state and city are required")
     am.manage_signup(username, password, state, city)
     return JSONResponse(status_code=200, content={"message": "Signup successful"})
+
+
