@@ -71,6 +71,10 @@ async def become_poll_worker(request: Request):
     return templates.TemplateResponse("PollWorker.html", {"request": request})
 
 
+@router.get("/eligibility_check", response_class=HTMLResponse)
+async def eligibility_check(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("EligibilityCheck.html", {"request": request})
+
 # API routing
 @router.post("/api/login", response_class=JSONResponse)
 async def login_post(data: LoginModel = Body(...)) -> JSONResponse:
