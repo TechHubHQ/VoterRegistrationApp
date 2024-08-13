@@ -38,9 +38,9 @@ async def dashboard(request: Request) -> HTMLResponse:
 async def voter_registration(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("VoterRegistration.html", {"request": request})
 
-@router.get("/eligibility", response_class=HTMLResponse)
-async def eligibility(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("Eligibility.html", {"request": request})
+@router.get("/eligibility_details", response_class=HTMLResponse)
+async def eligibility_details(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("EligibilityDetails.html", {"request": request})
 
 @router.get("/deadlines", response_class=HTMLResponse)
 async def deadlines(request: Request) -> HTMLResponse:

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Valid Forms of ID - Voter Registration</title>
+    <title>Eligibility Details - Voter Registration</title>
     <link rel="icon" href="{{ url_for('ui', path='/assets/favicon.ico') }}" />
     <link
       rel="stylesheet"
@@ -13,7 +13,7 @@
   <body class="min-h-screen bg-gray-100">
     <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold text-gray-900">Eligibility Checker</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Eligibility Details</h1>
       </div>
     </header>
     <main>
@@ -61,21 +61,17 @@
                   Check State-Specific ID Requirements
                   <i class="fas fa-external-link-alt ml-2"></i>
                 </a>
-                <a href="/eligibility_check" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                  Quick Eligibility Check
-                  <i class="fas fa-check-circle ml-2"></i>
-                </a>
               </div>
             </div>
           </div>
 
           <div class="mt-8 flex justify-between">
-            <a href="/dashboard" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <a href="/eligibility_check" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               <i class="fas fa-arrow-left mr-2"></i>
-              Back to Dashboard
+              Back to Eligibility Checker
             </a>
-            <a href="/elections_directory" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Next: Elections Directory
+            <a href="/register_to_vote" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Next: Voter Registration
               <i class="fas fa-arrow-right ml-2"></i>
             </a>
           </div>
