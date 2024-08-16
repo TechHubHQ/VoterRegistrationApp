@@ -36,6 +36,19 @@ class AccessManager:
         if self.get_user(username):
             raise ValueError("User already exists")
         self.set_user(username, password, state, city)
+        return True
+
+    def manage_forgot_password(self, username: str, new_password: str):
+        user_details = self.get_user(username)
+        if user_details:
+            if user_details[2] == bcrypt.hashpw(password.encode(), bcrypt.gensalt()):
+                raise ValueError("New password cannot be the same as the old password")
+            hashed_password = bcrypt.hashpw(new_password.encode(), bcrypt.gensalt())
+            query = "UPDATE user_data SET password_hash = ? WHERE username = ?"
+            with self.db_connection() as conn:
+                self.db.execute_query(query, (hashed_password, username))
+            return True
+        return False
 
 def main():
     am = AccessManager()

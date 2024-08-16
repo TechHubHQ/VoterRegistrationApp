@@ -10,3 +10,8 @@ class SignupModel(BaseModel):
     password: str
     state: str
     city: str
+
+
+class ForgotPassModel(BaseModel):
+    username: str
+    password: str

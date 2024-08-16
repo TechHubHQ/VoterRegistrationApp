@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, HTTPException, Body
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
-from Backend.Models.VRm_data_model import LoginModel, SignupModel
+from Backend.Models.VRm_data_model import LoginModel, SignupModel, ForgotPassModel
 from Backend.Controllers.VRc_user_controler import AccessManager
 
 router = APIRouter()
@@ -75,6 +75,11 @@ async def become_poll_worker(request: Request):
 async def eligibility_check(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("EligibilityCheck.html", {"request": request})
 
+@router.get("/forgot_pass", response_class=HTMLResponse)
+async def forgot_pass(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("ForgotPassword.html", {"request": request})
+
+
 # API routing
 @router.post("/api/login", response_class=JSONResponse)
 async def login_post(data: LoginModel = Body(...)) -> JSONResponse:
@@ -101,3 +106,13 @@ async def signup_post(data: SignupModel = Body(...)) -> JSONResponse:
         raise HTTPException(status_code=400, detail="Username, password, state and city are required")
     am.manage_signup(username, password, state, city)
     return JSONResponse(status_code=200, content={"message": "Signup successful"})
+
+
+@router.post("/api/update_pass", response_class=JSONResponse)
+async def forgot_pass_post(data: ForgotPassModel = Body(...)) -> JSONResponse:
+    username = data.username
+    password = data.password
+    if not username or not password:
+        raise HTTPException(status_code=400, detail="Username and new password are required")
+    am.manage_forgot_password(username, password)
+    return JSONResponse(status_code=200, content={"message": "Password reset successful"})
