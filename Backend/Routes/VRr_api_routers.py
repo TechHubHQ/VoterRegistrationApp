@@ -27,7 +27,7 @@ async def login(request: Request) -> HTMLResponse:
 
 @router.get("/signup", response_class=HTMLResponse)
 async def signup(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("Signup.html", {"request": request})
+    return templates.TemplateResponse("SignUp.html", {"request": request})
 
 
 @router.get("/dashboard", response_class=HTMLResponse)
