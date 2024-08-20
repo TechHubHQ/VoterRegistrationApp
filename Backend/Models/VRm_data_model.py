@@ -8,8 +8,6 @@ class LoginModel(BaseModel):
 class SignupModel(BaseModel):
     username: str
     password: str
-    state: str
-    city: str
 
 
 class ForgotPassModel(BaseModel):

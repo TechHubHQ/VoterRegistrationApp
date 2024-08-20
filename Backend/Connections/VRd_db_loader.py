@@ -1,6 +1,7 @@
 import os
 import sqlite3
 
+
 class DataBase:
     def __init__(self, db_name: str = "VRd_db.db", schema_file: str = "schema.sql"):
         self.db_name = db_name
@@ -24,13 +25,21 @@ class DataBase:
             self.cursor = None
 
     def create_tables(self):
-        """Create tables based on the SQL schema file."""
+        """Create tables based on the SQL schema file, dropping existing ones first."""
         try:
+            # Drop all existing user-defined tables
+            self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';")
+            tables = self.cursor.fetchall()
+            for table_name in tables:
+                self.cursor.execute(f"DROP TABLE IF EXISTS {table_name[0]};")
+            self.conn.commit()
+
+            # Execute schema script to create tables
             with open(self.schema_file, 'r') as sql_file:
                 sql_script = sql_file.read()
             self.cursor.executescript(sql_script)
             self.conn.commit()
-            print(f"Database schema executed successfully.")
+            print("Database schema executed successfully.")
         except sqlite3.Error as e:
             print(f"An error occurred while creating tables: {e}")
 

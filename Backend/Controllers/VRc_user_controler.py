@@ -1,10 +1,13 @@
 import bcrypt
+from datetime import datetime, timedelta
 from contextlib import contextmanager
 from Backend.Connections.VRd_db_loader import DataBase
 
 class AccessManager:
     def __init__(self):
         self.db = DataBase()
+        self.secret_key = "voter-reg-secret-key"
+        self.token_expiration = timedelta(hours=24)
 
     @contextmanager
     def db_connection(self):
@@ -20,7 +23,7 @@ class AccessManager:
             user = self.db.fetch_one(query, (username,))
             return user if user else None
 
-    def set_user(self, username: str, password: str, state: str, city: str):
+    def set_user(self, username: str, password: str, state: str = None, city: str = None):
         hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
         query = "INSERT INTO user_data (username, password_hash, state, city) VALUES (?,?,?,?)"
         with self.db_connection() as conn:
@@ -32,7 +35,7 @@ class AccessManager:
             return True
         return False
 
-    def manage_signup(self, username: str, password: str, state: str, city: str):
+    def manage_signup(self, username: str, password: str, state: str = None, city: str = None):
         if self.get_user(username):
             raise ValueError("User already exists")
         self.set_user(username, password, state, city)
@@ -41,7 +44,7 @@ class AccessManager:
     def manage_forgot_password(self, username: str, new_password: str):
         user_details = self.get_user(username)
         if user_details:
-            if user_details[2] == bcrypt.hashpw(password.encode(), bcrypt.gensalt()):
+            if user_details[2] == bcrypt.hashpw(new_password.encode(), bcrypt.gensalt()):
                 raise ValueError("New password cannot be the same as the old password")
             hashed_password = bcrypt.hashpw(new_password.encode(), bcrypt.gensalt())
             query = "UPDATE user_data SET password_hash = ? WHERE username = ?"
@@ -54,6 +57,12 @@ def main():
     am = AccessManager()
     if am.manage_login("test_user", "test_password"):
         print("Login successful")
+        token = am.generate_token("test_user")
+        print(f"Generated token: {token}")
+        if am.verify_token(token):
+            print("Token verification successful")
+        else:
+            print("Token verification failed")
     else:
         print("Login failed")
         try:

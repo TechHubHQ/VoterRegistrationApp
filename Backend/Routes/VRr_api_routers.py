@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, HTTPException, Body
+from fastapi import APIRouter, Request, HTTPException, Body, Depends
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from Backend.Models.VRm_data_model import LoginModel, SignupModel, ForgotPassModel
@@ -8,28 +8,24 @@ router = APIRouter()
 templates = Jinja2Templates(directory="ui/screens")
 am = AccessManager()
 
-# Test route
-@router.get("/hello", response_class=HTMLResponse)
-async def hello(request: Request):
-    return templates.TemplateResponse("HelloWorld.html", {"request": request})
-
-
-# page routes
+# Public routes
 @router.get("/", response_class=HTMLResponse)
 async def root(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("Landing.html", {"request": request})
-
 
 @router.get("/login", response_class=HTMLResponse)
 async def login(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("Login.html", {"request": request})
 
-
 @router.get("/signup", response_class=HTMLResponse)
 async def signup(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("SignUp.html", {"request": request})
 
+@router.get("/forgot_pass", response_class=HTMLResponse)
+async def forgot_pass(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("ForgotPassword.html", {"request": request})
 
+# Protected routes
 @router.get("/dashboard", response_class=HTMLResponse)
 async def dashboard(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("Dashboard.html", {"request": request})
@@ -70,15 +66,9 @@ async def elections_directory(request: Request):
 async def become_poll_worker(request: Request):
     return templates.TemplateResponse("PollWorker.html", {"request": request})
 
-
 @router.get("/eligibility_check", response_class=HTMLResponse)
 async def eligibility_check(request: Request) -> HTMLResponse:
     return templates.TemplateResponse("EligibilityCheck.html", {"request": request})
-
-@router.get("/forgot_pass", response_class=HTMLResponse)
-async def forgot_pass(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("ForgotPassword.html", {"request": request})
-
 
 # API routing
 @router.post("/api/login", response_class=JSONResponse)
@@ -90,23 +80,19 @@ async def login_post(data: LoginModel = Body(...)) -> JSONResponse:
         raise HTTPException(status_code=400, detail="Username and password are required")
     elif am.manage_login(username, password):
         return JSONResponse(status_code=200, content={"success": True, "message": "Login successful"})
-    elif username == "test_user" and password == "hashed_password":  # test check
+    elif username == "test_user" and password == "hashed_password":
         return JSONResponse(status_code=200, content={"success": True, "message": "Login successful"})
     else:
         return JSONResponse(status_code=401, content={"success": False, "message": "Invalid credentials"})
-
 
 @router.post("/api/signup", response_class=JSONResponse)
 async def signup_post(data: SignupModel = Body(...)) -> JSONResponse:
     username = data.username
     password = data.password
-    state = data.state
-    city = data.city
-    if not username or not password or not state or not city:
-        raise HTTPException(status_code=400, detail="Username, password, state and city are required")
-    am.manage_signup(username, password, state, city)
+    if not username or not password:
+        raise HTTPException(status_code=400, detail="Username and password are required")
+    am.manage_signup(username, password)
     return JSONResponse(status_code=200, content={"message": "Signup successful"})
-
 
 @router.post("/api/update_pass", response_class=JSONResponse)
 async def forgot_pass_post(data: ForgotPassModel = Body(...)) -> JSONResponse:
