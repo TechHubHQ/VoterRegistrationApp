@@ -28,11 +28,11 @@ class DataBase:
         """Create tables based on the SQL schema file, dropping existing ones first."""
         try:
             # Drop all existing user-defined tables
-            self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';")
-            tables = self.cursor.fetchall()
-            for table_name in tables:
-                self.cursor.execute(f"DROP TABLE IF EXISTS {table_name[0]};")
-            self.conn.commit()
+            # self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';")
+            # tables = self.cursor.fetchall()
+            # for table_name in tables:
+            #     self.cursor.execute(f"DROP TABLE IF EXISTS {table_name[0]};")
+            # self.conn.commit()
 
             # Execute schema script to create tables
             with open(self.schema_file, 'r') as sql_file:
